@@ -1,6 +1,7 @@
 #include <stdio.h>
 
 char state = 0b1101100;
+int count[128];
 
 void shift() {
     // retrieve the three bits
@@ -21,13 +22,25 @@ char random() {
 }
 
 int main() {
-    // generate a new random number
-    char a = random();
-    char b = random();
-    char c = random();
+    int i = 1000;
+    int nonZero = 0;
 
-    // print the result
-    printf("The random number is: %d!\n", a);
+    // generate i-many random numbers
+    for(;i>0;i--) {
+        char n = random();
+
+        // increment the counter for n
+        count[n]++;
+    }
+
+    // print the results
+    for(i=0;i<128;i++) {
+        printf("count[%d]=%d\n", i, count[i]);
+        if(count[i] > 0) nonZero++;
+    }
+
+    // print the number of non-zero counts
+    printf("Non-zero: %d\n", nonZero);
 
     // success
     return 0;

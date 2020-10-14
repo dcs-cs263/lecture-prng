@@ -15,12 +15,19 @@ void shift() {
     state = (state >> 1) | (n << 6);
 }
 
+char random() {
+    shift();
+    return state;
+}
+
 int main() {
     // generate a new random number
-    shift(); shift();  shift();
+    char a = random();
+    char b = random();
+    char c = random();
 
     // print the result
-    printf("The random number is: %d!\n", state);
+    printf("The random number is: %d!\n", a);
 
     // success
     return 0;
